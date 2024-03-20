@@ -1,11 +1,13 @@
 import time
 
+
 from appium import webdriver
 from appium.webdriver.common.appiumby import AppiumBy
 from appium.options.android import UiAutomator2Options
 from appium.webdriver.appium_service import AppiumService
 from appium.options.ios import XCUITestOptions
 from appium.options.common import AppiumOptions
+from selenium.webdriver.common.action_chains import ActionChains
 
 APPIUM_PORT = 4723
 APPIUM_HOST = '127.0.0.1'
@@ -38,15 +40,26 @@ def create_android_driver(custom_opts = None):
 #     browserName='Chrome'
 #
 # )
+appium_service = AppiumService()
+appium_service.start()
 
 
 driver = create_android_driver()
+driver.implicitly_wait(10)
 driver.get("http://google.com")
 # print(driver.title)
 # webdriver.find_element(AppiumBy.XPATH,"//*[@name='q']").send_keys("Hello Appium !!!")
 #driver.find_element_by_name("q").send_keys("Hello Appium !!!")
-driver.find_element(by=AppiumBy.XPATH, value="//*[@id='L2AGLb']").is_displayed()
-driver.find_element(by=AppiumBy.XPATH, value="//*[@id='L2AGLb']").click()
+element = driver.switch_to.active_element
+driver.scroll(driver.find_element(by=AppiumBy.XPATH, value="//*[@id='S3BnEe']"),
+            driver.find_element(by=AppiumBy.XPATH, value="//*[@id='RP3V5c']"))
+action = ActionChains(driver)
+
+driver.find_element(by=AppiumBy.XPATH, value="//*[@id='L2AGLb']").is_enabled()
+cookie_accept_button = driver.find_element(by=AppiumBy.XPATH, value="//*[@id='L2AGLb']")
+action.click(on_element=cookie_accept_button)
+action.perform()
 driver.find_element(by=AppiumBy.XPATH, value="//*[@name='q']").send_keys("Hello Appium!!!")
 time.sleep(2)
 driver.quit()
+appium_service.stop()

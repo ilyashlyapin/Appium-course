@@ -39,6 +39,8 @@ def create_android_driver(custom_opts=None):
 #     browserName='Chrome'
 #
 # )
+appium_service = AppiumService()
+appium_service.start()
 
 driver = create_android_driver()
 driver.get("https://wikipedia.org")
@@ -66,3 +68,5 @@ for option in options:
 
 time.sleep(2)
 driver.quit()
+
+appium_service.stop()
