@@ -152,3 +152,8 @@ cython_debug/
 #.idea/
 TheApp.apk
 TheApp.app.zip
+app/amazon.apk
+/app
+desired_capabilities.py
+pytestlearning/testreports.html
+python-client/

@@ -70,7 +70,7 @@ def wda_port() -> int:
 
 
 def iphone_device_name() -> str:
-    prefix = 'iPhone 12'
+    prefix = 'iPhone 13'
     if PytestXdistWorker.NUMBER == PytestXdistWorker.gw(0):
         return f'{prefix} - 8100'
     elif PytestXdistWorker.NUMBER == PytestXdistWorker.gw(1):
