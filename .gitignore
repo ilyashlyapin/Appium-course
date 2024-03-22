@@ -158,3 +158,4 @@ desired_capabilities.py
 pytestlearning/testreports.html
 python-client/
 /node_modules
+/.idea
