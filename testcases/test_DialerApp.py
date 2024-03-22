@@ -44,10 +44,11 @@ appium_service.start()
 
 driver = create_android_driver()
 driver.implicitly_wait(10)
+driver.find_element(by=AppiumBy.ID, value='com.google.android.dialer:id/dialpad_fab').click()
+driver.find_element(by=AppiumBy.ID, value='com.google.android.dialer:id/one').click()
+driver.find_element(by=AppiumBy.ID, value='com.google.android.dialer:id/two').click()
+driver.find_element(by=AppiumBy.ID, value='com.google.android.dialer:id/three').click()
+driver.find_element(by=AppiumBy.ID, value='com.google.android.dialer:id/four').click()
 time.sleep(2)
 driver.quit()
 appium_service.stop()
-"""
-ActionChains class comes with various methods that help to perform complex actions on webelements. 
-You can go for ActionChains class when it becomes difficult to perform actions by a WebDriver. 
-"""

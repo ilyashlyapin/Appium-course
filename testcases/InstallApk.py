@@ -1,37 +1,44 @@
 import time
 from pathlib import Path
 
+import time
+
 from appium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+from appium.webdriver.common.appiumby import AppiumBy
+from appium.options.android import UiAutomator2Options
+from appium.webdriver.appium_service import AppiumService
+from appium.options.ios import XCUITestOptions
+from appium.options.common import AppiumOptions
+from selenium.webdriver.common.action_chains import ActionChains
 
-desired_cap = {}
-desired_cap['platformName'] = 'Android'
-desired_cap['deviceName'] = 'Android'
-desired_cap['app'] = str(Path().absolute().parent)+'\\app\\drag.apk'
-#desired_cap['app'] = str(Path().absolute().parent)+'\\app\\amazon.apk'
-#desired_cap['appPackage'] = 'in.amazon.mShop.android.shopping'
-#desired_cap['appActivity'] = 'com.amazon.mShop.home.HomeActivity'
+APPIUM_PORT = 4723
+APPIUM_HOST = '127.0.0.1'
 
 
+def create_android_driver(custom_opts=None):
+    options = UiAutomator2Options()
+    options.platformVersion = '11'
+    options.udid = 'emulator-5554'
+    options.app = 'C:\\Users\\User\\OneDrive\\Desktop\\Amazon Shopping_28.6.0.100.apk'
 
-driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub',desired_cap)
+    if custom_opts is not None:
+        options.load_capabilities(custom_opts)
+    # Appium1 points to http://127.0.0.1:4723/wd/hub by default
+    return webdriver.Remote(f'http://{APPIUM_HOST}:{APPIUM_PORT}', options=options)
+
+appium_service = AppiumService()
+appium_service.start()
+
+driver = create_android_driver()
 driver.implicitly_wait(5)
-time.sleep(5)
+# driver.find_element(by=AppiumBy.ACCESSIBILITY_ID, value='2').click()
+# driver.find_element(by=AppiumBy.ACCESSIBILITY_ID, value='plus').click()
+# driver.find_element(by=AppiumBy.ACCESSIBILITY_ID, value='4').click()
+# driver.find_element(by=AppiumBy.ACCESSIBILITY_ID, value='equals').click()
+# result = driver.find_element(by=AppiumBy.ID, value='com.google.android.calculator:id/result_final').text
+# print(result)
+# assert int(result) == 6
 
-#el1 = driver.find_element_by_id("in.amazon.mShop.android.shopping:id/sso_continue")
-#el1.click()
-#driver.find_element_by_id('in.amazon.mShop.android.shopping:id/sso_continue').click()
-#driver.find_element(By.ID,'in.amazon.mShop.android.shopping:id/sso_continue').click()
-#driver.find_element(AppiumBy.ACCESSIBILITY_ID('Continue in English')).click()
-#driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR('new UiSelector().text("Skip sign in")')).click()
-# driver.find_element_by_id('in.amazon.mShop.android.shopping:id/skip_sign_in_button').click()
-# driver.find_element_by_id('in.amazon.mShop.android.shopping:id/rs_search_src_text').click()
-#
-# wait = WebDriverWait(driver,10)
-# wait.until(EC.element_to_be_clickable((By.ID,'in.amazon.mShop.android.shopping:id/rs_search_src_text')))
-# driver.find_element_by_id('in.amazon.mShop.android.shopping:id/rs_search_src_text').send_keys('Shoes')
-# driver.press_keycode(66)
-time.sleep(5)
+time.sleep(2)
 driver.quit()
+appium_service.stop()

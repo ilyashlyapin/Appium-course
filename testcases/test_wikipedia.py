@@ -24,21 +24,6 @@ def create_android_driver(custom_opts=None):
     # Appium1 points to http://127.0.0.1:4723/wd/hub by default
     return webdriver.Remote(f'http://{APPIUM_HOST}:{APPIUM_PORT}', options=options)
 
-
-# options = AppiumOptions()
-# options.platform_name = 'mac'
-# options.automation_name = 'chrome'
-# set_capability API allows to provide any custom option
-# calls to it could be chained
-# options.set_capability('chrome', 'chrome')
-# desired_caps = dict(
-#
-#
-#     deviceName='Android',
-#     platformName='Android',
-#     browserName='Chrome'
-#
-# )
 appium_service = AppiumService()
 appium_service.start()
 
