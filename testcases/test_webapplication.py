@@ -52,8 +52,8 @@ driver.scroll(driver.find_element(by=AppiumBy.XPATH, value="//*[@id='S3BnEe']"),
               driver.find_element(by=AppiumBy.XPATH, value="//*[@id='RP3V5c']"))
 action = ActionChains(driver)
 
-driver.find_element(by=AppiumBy.XPATH, value="//*[@id='L2AGLb']").is_enabled()
-cookie_accept_button = driver.find_element(by=AppiumBy.XPATH, value="//*[@id='L2AGLb']")
+driver.find_element(AppiumBy.XPATH, "//*[@id='L2AGLb']").is_enabled()
+cookie_accept_button = driver.find_element(AppiumBy.XPATH, value="//*[@id='L2AGLb']")
 # making a variable from finding a button
 action.click(on_element=cookie_accept_button)  # defining an action from ActionsChains
 action.perform()  # performing the defined action
