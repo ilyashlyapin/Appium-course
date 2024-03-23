@@ -160,3 +160,5 @@ python-client/
 /node_modules
 /.idea
 /.idea
+.idea/Appium-course.iml
+.idea/misc.xml
