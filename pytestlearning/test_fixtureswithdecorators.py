@@ -1,4 +1,5 @@
 import pytest
+import allure
 
 
 @pytest.fixture(scope='module')

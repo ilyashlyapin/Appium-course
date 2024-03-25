@@ -16,3 +16,9 @@ def test_validate_titles():
     assert "Gmails" in title, "Gmail does not exists in the title"
     assert False, "forcefully failing the test"
     print("Ending")
+
+
+"""
+To enable soft assertion we need to install pip install pytest-soft-assertions
+and then run pytest FILENAME -s -v --soft-asserts    
+"""

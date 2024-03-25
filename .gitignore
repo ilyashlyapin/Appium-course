@@ -162,3 +162,5 @@ python-client/
 /.idea
 .idea/Appium-course.iml
 .idea/misc.xml
+/pytestlearning/allurereports
+/pytestlearning/pytestlearning/allurereports

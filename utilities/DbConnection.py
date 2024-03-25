@@ -5,7 +5,7 @@ mydb = mysql.connector.connect(
 
     host="localhost",
     user="root",
-    password="selenium",
+    password="",
     database="pydb"
 
 

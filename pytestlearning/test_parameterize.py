@@ -3,7 +3,7 @@ import logging
 import pytest
 from utilities.generatingLogs import log
 
-log = Logger(__name__, logging.INFO)
+log = logging.Logger(__name__, logging.INFO)
 
 
 def get_data():
@@ -14,7 +14,6 @@ def get_data():
         ("info@way2automation.com", "sdfsdf")
 
     ]
-
 
 
 @pytest.mark.parametrize("username,password", get_data())
